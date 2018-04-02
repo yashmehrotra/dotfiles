@@ -1,0 +1,25 @@
+[global_config]
+[keybindings]
+  next_tab = <Primary><Shift>Right
+  prev_tab = <Primary><Shift>Left
+  resize_down = <Primary><Shift>Page_Down
+  resize_left = <Primary><Shift>Home
+  resize_right = <Primary><Shift>End
+  resize_up = <Primary><Shift>Page_Up
+  split_horiz = <Primary><Shift>d
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    cursor_shape = underline
+    font = Noto Sans Mono 10
+    scrollback_infinite = True
+    use_system_font = False
