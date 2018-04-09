@@ -92,6 +92,8 @@ let g:fzf_action = {
   \ 'ctrl-h': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 
 "=========="
 " Nerdtree "
