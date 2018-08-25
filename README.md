@@ -21,4 +21,5 @@ Usage:
 Vim:
 
 1. Install `vim-plug` from https://github.com/junegunn/vim-plug
+2. FZF Install, pip install jedi, fzf in zshrc for rev search
 2. Open `nvim` and run `:PlugInstall`

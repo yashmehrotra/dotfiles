@@ -5,30 +5,19 @@
 " Colors "
 "========"
 
-
 set t_Co=256                             " Important setting for running in Terminal (helps in converting color to 256 bit ) - took me 3 hours to set it right
 syntax enable                            " enable syntax processing
-" Because GVim
-if has('gui_running')
-    set background=dark
-    colorscheme solarized
-else
-    " Uncomment the below and comment the badwolf
-    set background=dark
-    "let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
-    "let g:solarized_contrast="high"
-    "let g:solarized_visibility="high"
-    "let g:solarized_termcolors=256
-    "colorscheme gruvbox
-    colorscheme badwolf                  " color setting by Steve Losh - https://github.com/sjl/badwolf/blob/master/colors/badwolf.vim
-endif
+
+set background=dark
+"colorscheme gruvbox
+colorscheme badwolf                  " color setting by Steve Losh - https://github.com/sjl/badwolf/blob/master/colors/badwolf.vim
 
 "==============="
 " Cursor        "
 "==============="
 
 set guicursor=a:hor25                    " set cursor as underline
+
 "==============="
 " Spaces & Tabs "
 "==============="
@@ -78,8 +67,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Yggdroot/indentLine'
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 call plug#end()
+
 filetype plugin indent on
+
+let g:deoplete#enable_at_startup = 1
 
 "====="
 " FZF "
@@ -94,7 +92,6 @@ let g:fzf_action = {
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-
 "=========="
 " Nerdtree "
 "=========="
@@ -104,6 +101,15 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 map <C-x> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+"========"
+" Python "
+"========"
+"
+call pymode#default('g:pymode_rope', 1)
+let g:pymode_options_colorcolumn = 0
+let g:pymode_rope_goto_def_newwin = 'vnew'
+let g:pymode_rope_goto_definition_bind = 'gd'
+let g:pymode_rope_goto_definition_cmd = 'vsplit'
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
