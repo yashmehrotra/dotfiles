@@ -1,3 +1,5 @@
 [user]
 	email = yashmehrotra95@gmail.com
 	name = Yash Mehrotra
+[core]
+	excludesfile = /home/yash/.gitignore_global

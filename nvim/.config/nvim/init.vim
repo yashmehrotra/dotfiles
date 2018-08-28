@@ -110,6 +110,7 @@ let g:pymode_options_colorcolumn = 0
 let g:pymode_rope_goto_def_newwin = 'vnew'
 let g:pymode_rope_goto_definition_bind = 'gd'
 let g:pymode_rope_goto_definition_cmd = 'vsplit'
+let g:pymode_lint_on_write = 1
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
