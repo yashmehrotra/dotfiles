@@ -64,12 +64,11 @@ filetype off
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
-Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'zchee/deoplete-jedi'
-" Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'Yggdroot/indentLine'
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'python-mode/python-mode', { 'branch': 'develop' }

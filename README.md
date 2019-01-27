@@ -6,12 +6,15 @@ Pre Install:
 2. Neovim
 3. Terminator
 4. Git
-5. 
+5. FZF
+6. Vim-plug
 
-For i3:
-1. acpi
-2. font-awesome
-3. amixer
+Software:
+1. Firefox
+2. VLC
+3. Dbox
+4. Docker
+5. Spotify
 
 Usage:
 
