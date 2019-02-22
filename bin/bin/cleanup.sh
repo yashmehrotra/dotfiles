@@ -18,6 +18,8 @@ files_to_remove=(".lesshst
                   .bash_logout
                   .bash_profile
                   .bashrc
+                  .node_repl_history
+                  .psql_history
                   .wget-hsts
                   .ansible_galaxy
                   .python_history")
@@ -32,6 +34,7 @@ directories_to_remove=(".stremio-server
                         .cache
                         .ansible
                         .ansible-infra
+                        .ipython
                         .npm")
 for dir in $directories_to_remove
 do
