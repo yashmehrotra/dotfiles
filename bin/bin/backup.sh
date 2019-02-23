@@ -19,8 +19,7 @@ directories_to_backup=("Work
                         .kube
                         .ssh
                         .zshrc
-                        .zsh_history
-                        tokens.txt")
+                        .zsh_history")
 
 for dir in $directories_to_backup
 do
@@ -28,7 +27,7 @@ do
     cp -rf "$HOME/$dir" "$BACKUP_DIR"
 done
 
-TAR_NAME="$HOME/backup-$(date +'%Y-%m-%d.%H:%M').tar"
+TAR_NAME="$HOME/backup-$(date +'%Y-%m-%d.%H-%M').tar"
 pprint "Creating a backup tar $TAR_NAME"
 tar -cf "$TAR_NAME" "$BACKUP_DIR"
 rm -rf "$BACKUP_DIR"
