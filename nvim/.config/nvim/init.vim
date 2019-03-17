@@ -54,7 +54,6 @@ set nohlsearch                           " highlight matches
 "================="
 
 "se mouse+=a                              " line numbers do not get copied
-"execute pathogen#infect()
 
 "=========="
 " Vim-Plug "
@@ -68,15 +67,23 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi', {'do': ':UpdateRemotePlugins'}
 Plug 'Yggdroot/indentLine'
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'davidhalter/jedi-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 filetype plugin indent on
 
+"=========="
+" Deoplete "
+"=========="
+
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog= '/home/yash/.virtualenvs/nvim/bin/python'
 
 "====="
 " FZF "
@@ -92,11 +99,13 @@ let g:fzf_action = {
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 "=========="
-" Nerdtree "
+" NerdTree "
 "=========="
 
 " Open on default
 " autocmd vimenter * NERDTree
+
+let NERDTreeShowHidden = 1
 map <C-x> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -104,13 +113,23 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Python "
 "========"
 
-call pymode#default('g:pymode_rope', 1)
-let g:pymode_options_colorcolumn = 0
-let g:pymode_rope_goto_def_newwin = 'vnew'
-let g:pymode_rope_goto_definition_bind = 'gd'
-let g:pymode_rope_goto_definition_cmd = 'vsplit'
-let g:pymode_lint_on_write = 1
-let g:pymode_rope_complete_on_dot = 0
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#goto_command = "gd"
+let g:jedi#usages_command = "gu"
+let g:jedi#documentation_command = "gk"
+
+"========"
+" Golang "
+"========"
+
+au FileType go nmap gu <Plug>(go-referrers)
+au FileType go nmap gk <Plug>(go-doc-split)
+
+"========="
+" Airline "
+"========="
+
+let g:airline_theme = "badwolf"
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2

@@ -24,5 +24,7 @@ Usage:
 Vim:
 
 1. Install `vim-plug` from https://github.com/junegunn/vim-plug
-2. FZF Install, pip install jedi, fzf in zshrc for rev search
-2. Open `nvim` and run `:PlugInstall`
+2. FZF Install, pip install neovim, fzf in zshrc for rev search
+3. virtualenv -p python3 ~/.virtualenvs/nvim
+4. workon nvim && pip install neovim
+4. Open `nvim` and run `:PlugInstall`
