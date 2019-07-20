@@ -8,9 +8,7 @@
 set t_Co=256                             " Important setting for running in Terminal (helps in converting color to 256 bit ) - took me 3 hours to set it right
 syntax enable                            " enable syntax processing
 
-set background=dark
-"colorscheme gruvbox
-colorscheme badwolf                  " color setting by Steve Losh - https://github.com/sjl/badwolf/blob/master/colors/badwolf.vim
+set background=dark                      " For colorscheme
 
 "==============="
 " Cursor        "
@@ -62,20 +60,33 @@ set nohlsearch                           " highlight matches
 filetype off
 
 call plug#begin()
+" File Tree Navigation
 Plug 'scrooloose/nerdtree'
+
+" Fuzzy file search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'zchee/deoplete-jedi', {'do': ':UpdateRemotePlugins'}
-Plug 'Yggdroot/indentLine'
-Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+" Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Python
 Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi', {'do': ':UpdateRemotePlugins'}
+
+" Miscellaneous
+Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'flazz/vim-colorschemes'
+
 call plug#end()
 
+colorscheme gruvbox
 filetype plugin indent on
 
 "=========="
@@ -124,6 +135,10 @@ let g:jedi#documentation_command = "gk"
 
 au FileType go nmap gu <Plug>(go-referrers)
 au FileType go nmap gk <Plug>(go-doc-split)
+" Use gopls when it is more mature
+" Also check if this is the default (it prints when you do gd)
+" Defined in vim-go file: autoload/go/config.vim
+" let g:go_def_mode='gopls'
 
 "========="
 " Airline "

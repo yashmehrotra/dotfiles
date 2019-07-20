@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pprint() {
     printf ' %.0s' $(seq 1 ${#1}) && echo
     echo $1
@@ -43,7 +45,7 @@ do
 done
 
 pprint "Cleaning docker images, volumes and containers"
-docker system prune -a -f
+docker system prune -a --volumes -f
 
 pprint "Removing old zcompdump files"
 ls $HOME/.zcompdump-endor-* | sort | head -n -1 | xargs rm -vf
