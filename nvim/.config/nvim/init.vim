@@ -51,7 +51,7 @@ set nohlsearch                           " highlight matches
 " No category yet "
 "================="
 
-"se mouse+=a                              " line numbers do not get copied
+set mouse+=a                              " line numbers do not get copied
 
 "=========="
 " Vim-Plug "
@@ -76,6 +76,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi', {'do': ':UpdateRemotePlugins'}
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 
 " Miscellaneous
 Plug 'Yggdroot/indentLine'
