@@ -152,4 +152,4 @@ au FileType go nmap gk <Plug>(go-doc-split)
 let g:airline_theme = "badwolf"
 
 autocmd FileType python setlocal completeopt-=preview
-autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab indentkeys-=<:>
