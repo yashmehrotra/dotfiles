@@ -2,4 +2,8 @@
 	email = yashmehrotra95@gmail.com
 	name = Yash Mehrotra
 [core]
-	excludesfile = /home/yash/.gitignore_global
+    excludesfile = /home/yash/.gitignore_global
+[pull]
+    ff = only
+[init]
+	defaultBranch = master

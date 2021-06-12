@@ -47,11 +47,11 @@ set ruler                                " show column numbers
 set incsearch                            " search as characters are entered
 set nohlsearch                           " highlight matches
 
-"================="
-" No category yet "
-"================="
+"=============="
+"Miscellaneous "
+"=============="
 
-set mouse+=a                              " line numbers do not get copied
+set mouse+=r                              " for easy copying of text
 
 "=========="
 " Vim-Plug "
@@ -67,20 +67,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
 " Python
+" TODO: Fix python setup
 Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi', {'do': ':UpdateRemotePlugins'}
 
 " Terraform
-Plug 'hashivim/vim-terraform'
-Plug 'vim-syntastic/syntastic'
-Plug 'juliosueiras/vim-terraform-completion'
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+"Plug 'juliosueiras/vim-terraform-completion', {'for': 'terraform'}
 
 " Miscellaneous
 Plug 'Yggdroot/indentLine'
@@ -88,6 +81,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
+Plug 'vim-syntastic/syntastic'
+
+" Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -134,22 +131,44 @@ let g:jedi#goto_command = "gd"
 let g:jedi#usages_command = "gu"
 let g:jedi#documentation_command = "gk"
 
-"========"
-" Golang "
-"========"
-
-au FileType go nmap gu <Plug>(go-referrers)
-au FileType go nmap gk <Plug>(go-doc-split)
-" Use gopls when it is more mature
-" Also check if this is the default (it prints when you do gd)
-" Defined in vim-go file: autoload/go/config.vim
-" let g:go_def_mode='gopls'
-
 "========="
 " Airline "
 "========="
 
 let g:airline_theme = "badwolf"
 
+
+"====="
+" CoC "
+"====="
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gx <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Format selected region.
+" TODO: Fix this
+xmap <leader>lf  <Plug>(coc-format-selected)
+nmap <leader>lf  <Plug>(coc-format-selected)
+
+" Use :Format to format currrent file
+command! -nargs=0 Format :call CocAction('format')
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+
+set spelllang=en
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab indentkeys-=<:>
+autocmd BufNewFile,BufRead *.toml setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+autocmd BufRead,BufNewFile *.md setlocal spell

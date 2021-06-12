@@ -28,3 +28,20 @@ Vim:
 3. virtualenv -p python3 ~/.virtualenvs/nvim
 4. workon nvim && pip install neovim
 4. Open `nvim` and run `:PlugInstall`
+
+To Configure Coc, install the following LSPs
+
+https://github.com/hashicorp/terraform-ls
+gopls for golang
+
+
+Neovim plugins to look out for
+- Plug 'nvim-telescope/telescope.nvim' --> Replacement for file search with preview
+- Plug 'neovim/nvim-lspconfig'
+- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+- Plug 'nvim-treesitter/playground'
+
+Todo for vim:
+- Format selection does not work
+- Integrate code folding
+- ctags
